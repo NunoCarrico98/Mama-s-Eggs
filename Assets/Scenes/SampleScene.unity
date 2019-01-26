@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 227228593}
   - component: {fileID: 227228592}
   - component: {fileID: 227228594}
+  - component: {fileID: 227228597}
   - component: {fileID: 227228596}
   - component: {fileID: 227228595}
   m_Layer: 0
@@ -328,7 +329,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 227228591}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -347,6 +348,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16350725, y: 0.28765607}
   m_EdgeRadius: 0
+--- !u!58 &227228597
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 227228591}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.012172192, y: -0.10407299}
+  serializedVersion: 2
+  m_Radius: 0.13642842
 --- !u!1 &282576878
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,10 +410,10 @@ MonoBehaviour:
   width: 1
   height: 1
   referencePointsCount: 60
-  referencePointRadius: 0.1
+  referencePointRadius: 0.02
   mappingDetail: 7
-  springDampingRatio: 10
-  springFrequency: 0.8
+  springDampingRatio: 20
+  springFrequency: 5
   surfaceMaterial: {fileID: 6200000, guid: 3a89cc1ec48a44255bea44a6ee6ad34b, type: 2}
 --- !u!23 &282576881
 MeshRenderer:
@@ -452,7 +468,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 200
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
