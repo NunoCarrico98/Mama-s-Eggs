@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Blob : MonoBehaviour {
     private class PropagateCollisions : MonoBehaviour {
         void OnCollisionEnter2D(Collision2D collision) {
-            transform.parent.SendMessage("OnCollisionEnter2D", collision);
+            //transform.parent.SendMessage("OnCollisionEnter2D", collision);
         }
     }
 

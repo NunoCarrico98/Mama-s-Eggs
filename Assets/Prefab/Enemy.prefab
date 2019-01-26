@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50982510258428752}
   - component: {fileID: 61477483680172150}
   - component: {fileID: 114768301141533164}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -104,6 +104,9 @@ MonoBehaviour:
   damage: 10
   movementSpeed: 5
   slowSpeed: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 307
 --- !u!212 &212944395227573162
 SpriteRenderer:
   m_ObjectHideFlags: 1
