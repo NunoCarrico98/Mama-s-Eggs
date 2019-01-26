@@ -8,17 +8,71 @@ public class EnemySpawner : MonoBehaviour
 	[SerializeField] private GameObject zombiePrefab;
 	[SerializeField] private float minRadius;
 	[SerializeField] private float maxRadius;
-	[SerializeField] private float minInterval;
-	[SerializeField] private float maxInterval;
+	[SerializeField] private float minInitialInterval;
+	[SerializeField] private float maxInitialInterval;
 
+    private float minInterval;
+    private float maxInterval;
+    private bool isZombieSpawner;
+    private bool isTrapSpawner;
+    private LevelManager lvlManager;
 	private Vector2 centerPos;
 
-	private void Start()
+    private void Awake()
+    {
+        lvlManager = FindObjectOfType<LevelManager>();
+        if (name.Contains("Zombie")) isZombieSpawner = true;
+        if (name.Contains("Trap")) isTrapSpawner = true;
+    }
+
+    private void Start()
 	{
 		StartCoroutine(WaitToSpawn());
 	}
 
-	public Vector2 GetSpawnPos()
+    private void Update()
+    {
+        if(isZombieSpawner) IncrementZombieDifficulty();
+        if (isTrapSpawner) IncrementZombieDifficulty();
+    }
+
+    private void IncrementZombieDifficulty()
+    {
+        minInterval = minInitialInterval +
+            (float)ProceduralGeneration.Logistic(
+            lvlManager.PlayTime * lvlManager.MinSpawnIntervalZombieValues[3],
+            lvlManager.MinSpawnIntervalZombieValues[0],
+            lvlManager.MinSpawnIntervalZombieValues[1],
+            lvlManager.MinSpawnIntervalZombieValues[2]);
+
+        maxInterval = maxInitialInterval +
+            (float)ProceduralGeneration.Logistic(
+            lvlManager.PlayTime * lvlManager.MinSpawnIntervalZombieValues[3],
+            lvlManager.MaxSpawnIntervalZombieValues[0],
+            lvlManager.MaxSpawnIntervalZombieValues[1],
+            lvlManager.MaxSpawnIntervalZombieValues[2]);
+    }
+
+
+    private void IncrementTrapDifficulty()
+    {
+        minInterval = minInitialInterval +
+            (float)ProceduralGeneration.Logistic(
+            lvlManager.PlayTime * lvlManager.MinSpawnIntervalTrapValues[3],
+            lvlManager.MinSpawnIntervalTrapValues[0],
+            lvlManager.MinSpawnIntervalTrapValues[1],
+            lvlManager.MinSpawnIntervalTrapValues[2]);
+
+        maxInterval = maxInitialInterval +
+            (float)ProceduralGeneration.Logistic(
+            lvlManager.PlayTime * lvlManager.MinSpawnIntervalTrapValues[3],
+            lvlManager.MinSpawnIntervalTrapValues[0],
+            lvlManager.MinSpawnIntervalTrapValues[1],
+            lvlManager.MinSpawnIntervalTrapValues[2]);
+    }
+
+
+    public Vector2 GetSpawnPos()
 	{
 		float ang = Random.value * 360;
 		float radius = Random.Range(minRadius, maxRadius);

@@ -4,58 +4,82 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-	[SerializeField] private Transform yolk;
-	[SerializeField] private Transform eggWhite;
-	[SerializeField] private Transform pan;
-	[SerializeField] private Transform player;
-	[SerializeField] private Transform spawners;
-	[SerializeField] private Transform zombieDestination;
-	[SerializeField] private float spawnRadius;
+    public double[] MinSpawnIntervalZombieValues
+        => minSpawnIntervalZombieValues;
+    public double[] MaxSpawnIntervalZombieValues
+        => maxSpawnIntervalZombieValues;
+    public double[] MinSpawnIntervalTrapValues
+        => minSpawnIntervalTrapValues;
+    public double[] MaxSpawnIntervalTrapValues
+        => maxSpawnIntervalTrapValues;
+    public double[] ZombieSpeedValues
+        => zombieSpeedValues;
 
-	private void Start()
-	{
-		SpawnPan();
-		SpawnEggWhite();
-		SpawnYolk();
-		SpawnPlayer();
-		SpawnSpawners();
-		SpawnZombieDest();
-	}
+    public float PlayTime { get; private set; }
 
-	public Vector2 GetSpawnPos(Vector2 centerPos)
-	{
-		float ang = Random.value * 360;
-		float radius = spawnRadius;
-		Vector2 pos;
-		pos.x = (centerPos.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad));
-		pos.y = (centerPos.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad));
-		return pos;
-	}
+    [SerializeField] private Transform yolk;
+    [SerializeField] private Transform eggWhite;
+    [SerializeField] private Transform pan;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform spawners;
+    [SerializeField] private Transform zombieDestination;
+    [SerializeField] private float spawnRadius;
+    /* Procedural generation values */
+    [SerializeField] private double[] minSpawnIntervalZombieValues = new double[4];
+    [SerializeField] private double[] maxSpawnIntervalZombieValues = new double[4];
+    [SerializeField] private double[] minSpawnIntervalTrapValues = new double[4];
+    [SerializeField] private double[] maxSpawnIntervalTrapValues = new double[4];
+    [SerializeField] private double[] zombieSpeedValues = new double[4];
 
-	private void SpawnYolk()
-	{
-		Vector2 centerPos = transform.position;
+    private void Start()
+    {
+        SpawnPan();
+        SpawnEggWhite();
+        SpawnYolk();
+        SpawnPlayer();
+        SpawnSpawners();
+        SpawnZombieDest();
+    }
 
-		Vector2 pos = GetSpawnPos(centerPos);
+    private void Update()
+    {
+        PlayTime += Time.deltaTime;
+    }
 
-		yolk.position = pos;
-		yolk.rotation = eggWhite.rotation;
-	}
+    public Vector2 GetSpawnPos(Vector2 centerPos)
+    {
+        float ang = Random.value * 360;
+        float radius = Random.Range(0, spawnRadius);
+        Vector2 pos;
+        pos.x = (centerPos.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad));
+        pos.y = (centerPos.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad));
+        return pos;
+    }
 
-	private void SpawnEggWhite() => SetRandomRotation(eggWhite);
+    private void SpawnYolk()
+    {
+        Vector2 centerPos = transform.position;
 
-	private void SpawnPan() => SetRandomRotation(pan);
+        Vector2 pos = GetSpawnPos(centerPos);
 
-	private void SpawnPlayer() => player.position = yolk.position;
+        yolk.position = pos;
+        yolk.rotation = eggWhite.rotation;
+    }
 
-	private void SpawnSpawners() => spawners.position = yolk.position;
+    private void SpawnEggWhite() => SetRandomRotation(eggWhite);
 
-	private void SpawnZombieDest() => zombieDestination.position = yolk.position;
+    private void SpawnPan() => SetRandomRotation(pan);
 
-	private void SetRandomRotation(Transform obj)
-	{
-		var euler = obj.eulerAngles;
-		euler.z = Random.Range(0.0f, 360.0f);
-		obj.eulerAngles = euler;
-	}
+    private void SpawnPlayer() => player.position = yolk.position;
+
+    private void SpawnSpawners() => spawners.position = yolk.position;
+
+    private void SpawnZombieDest() => zombieDestination.position = yolk.position;
+
+    private void SetRandomRotation(Transform obj)
+    {
+        var euler = obj.eulerAngles;
+        euler.z = Random.Range(0.0f, 360.0f);
+        obj.eulerAngles = euler;
+    }
 }

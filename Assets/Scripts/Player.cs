@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 	[SerializeField] private float maxTimeOutsideYolk;
 	[SerializeField] private float rollSpeed;
 
+
+
 	public float MaxTimeOutsideYolk => maxTimeOutsideYolk;
 	public float DeathTimer { get; private set; }
 	public bool IsDying { get; private set; }
@@ -21,18 +23,23 @@ public class Player : MonoBehaviour
 	private Vector2 dir = Vector2.zero;
 	private Rigidbody2D rb;
 	private Animator animator;
+    private ParticleSystem particleSystem;
+    private ScoreManager scoreManager;
 
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
-	}
+        particleSystem = transform.GetChild(0).GetComponent<ParticleSystem>();
+        particleSystem.Stop();
+
+    }
 
 	private void Update()
 	{
 		if(canRoll) CheckRollInput();
 		DeathCountdown();
-		ResetDeathTimer();
+		if(!Rolling) ResetDeathTimer();
 	}
 
 	private void FixedUpdate()
@@ -59,8 +66,9 @@ public class Player : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Action") && !Rolling && dir != Vector2.zero)
 		{
-			DeathTimer += 0.14f * maxTimeOutsideYolk;
-			animator.SetTrigger("Roll");
+            DeathTimer += maxTimeOutsideYolk * 0.14f;
+
+            animator.SetTrigger("Roll");
 			Rolling = true;
 		}
 	}
@@ -106,7 +114,10 @@ public class Player : MonoBehaviour
 		animator.SetTrigger("Die");
 		ableToMove = false;
 		yield return new WaitForSeconds(0.4f);
-		gameObject.SetActive(false);
+            transform.GetChild(1).parent = null;
+        transform.GetChild(0).parent = null;
+        particleSystem.Stop();
+        gameObject.SetActive(false);
 	}
 
 	private void SetPlayerSpriteDirection(float horizontal)
@@ -132,11 +143,15 @@ public class Player : MonoBehaviour
 		if (col.tag == "YolkIn")
 		{
 			IsReseting = true;
-			ResetDeathTimer();
+            particleSystem.Stop();
+            ResetDeathTimer();
 		}
 
-		if (col.tag == "Enemy" && Rolling)
-			StartCoroutine(col.gameObject.GetComponent<Zombie>().Die());
+        if (col.tag == "Enemy" && Rolling)
+        {
+            StartCoroutine(col.gameObject.GetComponent<Zombie>().Die());
+            scoreManager.IncreaseScore("zombie");
+        }
 
 		if (col.tag == "Trap")
 			if (col.GetComponent<TrapBubble>().IsExploding) StartCoroutine(Die());
@@ -147,7 +162,11 @@ public class Player : MonoBehaviour
 		if (col.tag == "EggWhite")
 			StartCoroutine(Die());
 
-		if (col.transform.tag == "YolkIn")
-			IsDying = true;
+        if (col.transform.tag == "YolkIn")
+        {
+            IsDying = true;
+            particleSystem.Play();
+        }
+            
 	}
 }

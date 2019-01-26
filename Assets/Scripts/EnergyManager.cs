@@ -9,6 +9,8 @@ public class EnergyManager : MonoBehaviour
 	private Player player;
 	public EnergyLevels EnergyLevel { get; private set; } = EnergyLevels.seven;
 
+    private bool killFlag;
+
 	private void Awake()
 	{
 		player = FindObjectOfType<Player>();
@@ -25,44 +27,53 @@ public class EnergyManager : MonoBehaviour
 		SetEnergyLevelState();
 		UpdateEnergyLevelsUI();
 		KillPlayer();
+        ManagePlayerRoll();
 	}
 
 	private void KillPlayer()
 	{
-		if(EnergyLevel == EnergyLevels.zero) StartCoroutine(player.Die());
+        if (EnergyLevel == EnergyLevels.zero && !killFlag)
+        {
+            StartCoroutine(player.Die());
+            killFlag = true;
+        }
 	}
 
 	private void SetEnergyLevelState()
 	{
-		if (player.DeathTimer >= player.MaxTimeOutsideYolk)
-			EnergyLevel = EnergyLevels.zero;
-		else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.14f &&
-			player.DeathTimer > 0f)
-			EnergyLevel = EnergyLevels.seven;
-		else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.28f &&
-			player.DeathTimer > player.MaxTimeOutsideYolk * 0.14f)
-			EnergyLevel = EnergyLevels.six;
-		else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.32f &&
-			player.DeathTimer > player.MaxTimeOutsideYolk * 0.28f)
-			EnergyLevel = EnergyLevels.five;
-		else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.46f &&
-			player.DeathTimer > player.MaxTimeOutsideYolk * 0.32f)
-			EnergyLevel = EnergyLevels.four;
-		else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.60f &&
-			player.DeathTimer > player.MaxTimeOutsideYolk * 0.46f)
-			EnergyLevel = EnergyLevels.three;
-		else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.74f &&
-			player.DeathTimer > player.MaxTimeOutsideYolk * 0.60f)
-			EnergyLevel = EnergyLevels.two;
-		else if (player.DeathTimer > player.MaxTimeOutsideYolk * 0.74f)
-			EnergyLevel = EnergyLevels.one;
-	}
+        if (player.DeathTimer > player.MaxTimeOutsideYolk * 0.84f)
+            EnergyLevel = EnergyLevels.zero;
+        else if (player.DeathTimer == 0)
+            EnergyLevel = EnergyLevels.seven;
+        else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.14f &&
+            player.DeathTimer > 0f)
+            EnergyLevel = EnergyLevels.six;
+        else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.28f &&
+            player.DeathTimer > player.MaxTimeOutsideYolk * 0.14f)
+            EnergyLevel = EnergyLevels.five;
+        else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.42f &&
+            player.DeathTimer > player.MaxTimeOutsideYolk * 0.28f)
+            EnergyLevel = EnergyLevels.four;
+        else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.56f &&
+            player.DeathTimer > player.MaxTimeOutsideYolk * 0.42f)
+            EnergyLevel = EnergyLevels.three;
+        else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.70f &&
+            player.DeathTimer > player.MaxTimeOutsideYolk * 0.56f)
+            EnergyLevel = EnergyLevels.two;
+        else if (player.DeathTimer < player.MaxTimeOutsideYolk * 0.84f &&
+            player.DeathTimer > player.MaxTimeOutsideYolk * 0.70f)
+            EnergyLevel = EnergyLevels.one;
+    }
+
+    private void ManagePlayerRoll()
+    {
+        if (EnergyLevel == EnergyLevels.one) player.CanPlayerRoll(false);
+        else if(EnergyLevel != EnergyLevels.zero) player.CanPlayerRoll(true);
+    }
 
 	private void UpdateEnergyLevelsUI()
 	{
-		if (player.IsDying)
 			UpdateEnergyLevelsDyingUI();
-		else if(player.IsReseting)
 			UpdateEnergyLevelsResetingUI();
 	}
 
@@ -89,21 +100,21 @@ public class EnergyManager : MonoBehaviour
 
 	private void UpdateEnergyLevelsResetingUI()
 	{
-		if (EnergyLevel == EnergyLevels.six)
+		if (EnergyLevel == EnergyLevels.seven)
 			EnableGO(yolkIcons);
-		else if(EnergyLevel == EnergyLevels.five)
+		else if(EnergyLevel == EnergyLevels.six)
 			EnableGO(yolkIcons[5], yolkIcons[4], yolkIcons[3], yolkIcons[2],
 				yolkIcons[1], yolkIcons[0]);
-		else if(EnergyLevel == EnergyLevels.four)
+		else if(EnergyLevel == EnergyLevels.five)
 			EnableGO(yolkIcons[4], yolkIcons[3], yolkIcons[2], yolkIcons[1],
 				yolkIcons[0]);
-		else if(EnergyLevel == EnergyLevels.three)
+		else if(EnergyLevel == EnergyLevels.four)
 			EnableGO(yolkIcons[3], yolkIcons[2], yolkIcons[1], yolkIcons[0]);
-		else if(EnergyLevel == EnergyLevels.two)
+		else if(EnergyLevel == EnergyLevels.three)
 			EnableGO(yolkIcons[2], yolkIcons[1], yolkIcons[0]);
-		else if(EnergyLevel == EnergyLevels.one)
+		else if(EnergyLevel == EnergyLevels.two)
 			EnableGO(yolkIcons[1], yolkIcons[0]);
-		else if(EnergyLevel == EnergyLevels.zero)
+		else if(EnergyLevel == EnergyLevels.one)
 			EnableGO(yolkIcons[0]);
 	}
 
