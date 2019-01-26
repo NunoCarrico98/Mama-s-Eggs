@@ -208,7 +208,7 @@ Transform:
   m_LocalScale: {x: 29.238977, y: 27.048082, z: 27.048082}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &227228591
 GameObject:
@@ -264,8 +264,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 99
-  m_Sprite: {fileID: 21300000, guid: fd0ac55661affdb49ab1f25b265c06a5, type: 3}
-  m_Color: {r: 0, g: 0.8773585, b: 0.06935796, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1e0ba01ee2824c34ab9a6dd908b12f7a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -282,7 +282,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 227228591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a312d6855183e41a6754e310f5da75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 25
+  movementSpeed: 2
   maxTimeOutsideYolk: 10
   dashSpeed: 0
 --- !u!61 &227228596
@@ -334,18 +334,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.019481197, y: -0.106171966}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.55, y: 5}
+  m_Size: {x: 0.16350725, y: 0.28765607}
   m_EdgeRadius: 0
 --- !u!1 &282576878
 GameObject:
@@ -373,8 +373,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282576878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.99, y: 1.11, z: 0}
-  m_LocalScale: {x: 4.5, y: 4.5, z: 4.5}
+  m_LocalPosition: {x: 1.29, y: 0.08, z: 0}
+  m_LocalScale: {x: 2.15, y: 2.15, z: 2.15}
   m_Children:
   - {fileID: 398067941}
   m_Father: {fileID: 500833405}
@@ -452,7 +452,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100000
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -485,7 +485,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 310341313}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 500833405}
@@ -537,8 +537,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &310341316
-CircleCollider2D:
+--- !u!60 &310341316
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -550,8 +550,74 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.3249466
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.46, y: 8.62}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.99, y: 1.67}
+      - {x: 2.6299999, y: 1.89}
+      - {x: 2.23, y: 2.1499999}
+      - {x: 1.9699999, y: 2.35}
+      - {x: 1.67, y: 2.6299999}
+      - {x: 1.39, y: 3.05}
+      - {x: 1.25, y: 3.35}
+      - {x: 1.05, y: 3.6299999}
+      - {x: 0.77, y: 3.8899999}
+      - {x: 0.41, y: 4.0899997}
+      - {x: 0.089999996, y: 4.15}
+      - {x: -0.29, y: 4.15}
+      - {x: -1.13, y: 3.75}
+      - {x: -1.9499999, y: 3.21}
+      - {x: -3.05, y: 2.61}
+      - {x: -3.3899999, y: 2.37}
+      - {x: -3.57, y: 2.05}
+      - {x: -3.61, y: 1.65}
+      - {x: -3.49, y: 1.25}
+      - {x: -3.29, y: 0.77}
+      - {x: -3.27, y: 0.59}
+      - {x: -3.47, y: 0.39}
+      - {x: -3.73, y: 0.14999999}
+      - {x: -3.97, y: -0.21}
+      - {x: -4.11, y: -0.59}
+      - {x: -4.11, y: -1.01}
+      - {x: -4.0299997, y: -1.31}
+      - {x: -3.79, y: -1.55}
+      - {x: -3.6299999, y: -1.73}
+      - {x: -3.21, y: -1.91}
+      - {x: -2.6699998, y: -2.07}
+      - {x: -2.4099998, y: -2.1699998}
+      - {x: -2.07, y: -2.4099998}
+      - {x: -1.77, y: -2.6699998}
+      - {x: -1.49, y: -3.1499999}
+      - {x: -1.23, y: -3.53}
+      - {x: -0.98999995, y: -3.77}
+      - {x: -0.61, y: -3.99}
+      - {x: -0.32999998, y: -4.0499997}
+      - {x: 0.65, y: -4.0499997}
+      - {x: 1.1899999, y: -3.97}
+      - {x: 1.5899999, y: -3.83}
+      - {x: 1.9499999, y: -3.6299999}
+      - {x: 2.23, y: -3.21}
+      - {x: 2.4099998, y: -2.87}
+      - {x: 2.69, y: -2.3899999}
+      - {x: 2.8899999, y: -2.11}
+      - {x: 3.29, y: -1.8299999}
+      - {x: 3.61, y: -1.55}
+      - {x: 3.77, y: -1.25}
+      - {x: 3.9299998, y: -0.98999995}
+      - {x: 3.99, y: -0.63}
+      - {x: 3.9499998, y: 0.14999999}
+      - {x: 3.9099998, y: 0.42999998}
+      - {x: 3.79, y: 0.81}
+      - {x: 3.61, y: 1.1899999}
+      - {x: 3.37, y: 1.43}
 --- !u!1 &398067940
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +661,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.45760396
+  m_Radius: 0.49752328
 --- !u!1 &500833404
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +690,7 @@ Transform:
   - {fileID: 282576879}
   - {fileID: 310341314}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -674,7 +740,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 72
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -697,7 +763,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 732845363}
@@ -726,13 +792,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 521938497}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.002290202, w: 0.9999974}
+  m_LocalPosition: {x: 1.35, y: 0.08, z: 0.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.26200002}
 --- !u!114 &521938499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,8 +813,8 @@ MonoBehaviour:
   maxNumberOfEnemies: 10
   zombiePrefab: {fileID: 1184153243811196, guid: f599bb4d334224f4ab5c47590dd8eb29,
     type: 2}
-  minRadius: 24
-  maxRadius: 75
+  minRadius: 1.8
+  maxRadius: 8
   minInterval: 0.5
   maxInterval: 4
 --- !u!1 &732845362
@@ -813,7 +879,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 72
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -856,7 +922,7 @@ Transform:
   m_Children:
   - {fileID: 1471442088}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1332857112
 GameObject:
@@ -883,7 +949,7 @@ Transform:
   m_GameObject: {fileID: 1332857112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 256, y: 144, z: 1}
+  m_LocalScale: {x: 1024, y: 576, z: 1}
   m_Children: []
   m_Father: {fileID: 732845363}
   m_RootOrder: 0
@@ -953,7 +1019,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1471442087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.32, y: 0, z: 0}
+  m_LocalPosition: {x: 4.26, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1066451152}

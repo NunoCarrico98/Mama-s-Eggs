@@ -36,12 +36,12 @@ public class EnemySpawner : MonoBehaviour
         //Quaternion rot = Quaternion.LookRotation(Vector3.forward, center - pos);
         GameObject newEnemy = Instantiate(zombiePrefab, pos, transform.rotation, transform);
 
-        while(newEnemy.GetComponent<Enemy>().IsOutOfEggWhite())
-        {
-            Debug.Log("Spawnou fora");
-            newEnemy.transform.position = GetSpawnPos();
-        }
-    }
+		while (newEnemy.GetComponent<Enemy>().IsOutOfEggWhite())
+		{
+			Debug.Log("Spawnou fora");
+			newEnemy.transform.position = GetSpawnPos();
+		}
+	}
 
     private IEnumerator WaitToSpawn()
     {

@@ -49,12 +49,14 @@ public class Blob : MonoBehaviour {
 
             Rigidbody2D body = referencePoints[i].AddComponent<Rigidbody2D>();
             body.fixedAngle = true;
+			body.gravityScale = 0;
             body.interpolation = rigidbody.interpolation;
             body.collisionDetectionMode = rigidbody.collisionDetectionMode;
 
             CircleCollider2D collider =
                 referencePoints[i].AddComponent<CircleCollider2D>();
             collider.radius = referencePointRadius * transform.localScale.x;
+			collider.tag = "YolkOut";
             if (surfaceMaterial != null) {
                 collider.sharedMaterial = surfaceMaterial;
             }

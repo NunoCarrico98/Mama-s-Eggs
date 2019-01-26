@@ -18,10 +18,6 @@ public class Enemy : MonoBehaviour
 		if (target == null) target = GameObject.FindGameObjectWithTag("Yolk").transform;
 	}
 
-	private void Update()
-	{
-	}
-
 	private void FixedUpdate()
 	{
 		Move();
@@ -36,7 +32,7 @@ public class Enemy : MonoBehaviour
 	public bool IsOutOfEggWhite()
 	{
 		// Cast a ray straight down.
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up,
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward,
 			10, layerMask);
 
 		// If it hits something...
@@ -60,6 +56,5 @@ public class Enemy : MonoBehaviour
 			movementSpeed = slowSpeed;
 		else if (col.tag == "YolkIn")
 			Destroy(gameObject);
-
 	}
 }
