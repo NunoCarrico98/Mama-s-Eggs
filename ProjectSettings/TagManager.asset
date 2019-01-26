@@ -8,6 +8,8 @@ TagManager:
   - EggWhite
   - YolkOut
   - YolkIn
+  - Yolk
+  - Pan
   layers:
   - Default
   - TransparentFX
