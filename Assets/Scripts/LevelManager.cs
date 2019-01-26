@@ -12,8 +12,6 @@ public class LevelManager : MonoBehaviour
         => minSpawnIntervalTrapValues;
     public double[] MaxSpawnIntervalTrapValues
         => maxSpawnIntervalTrapValues;
-    public double[] ZombieSpeedValues
-        => zombieSpeedValues;
 
     public float PlayTime { get; private set; }
 
@@ -29,7 +27,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private double[] maxSpawnIntervalZombieValues = new double[4];
     [SerializeField] private double[] minSpawnIntervalTrapValues = new double[4];
     [SerializeField] private double[] maxSpawnIntervalTrapValues = new double[4];
-    [SerializeField] private double[] zombieSpeedValues = new double[4];
 
     private void Start()
     {

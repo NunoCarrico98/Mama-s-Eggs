@@ -16,11 +16,13 @@ public class EnemySpawner : MonoBehaviour
     private bool isZombieSpawner;
     private bool isTrapSpawner;
     private LevelManager lvlManager;
+    private GameManager gm;
 	private Vector2 centerPos;
 
     private void Awake()
     {
         lvlManager = FindObjectOfType<LevelManager>();
+        gm = FindObjectOfType<GameManager>();
         if (name.Contains("Zombie")) isZombieSpawner = true;
         if (name.Contains("Trap")) isTrapSpawner = true;
     }
@@ -122,7 +124,7 @@ public class EnemySpawner : MonoBehaviour
 
 			yield return new WaitForSeconds(interval);
 
-			Spawn();
+			if(!gm.IsGamePaused) Spawn();
 		}
 	}
 }
