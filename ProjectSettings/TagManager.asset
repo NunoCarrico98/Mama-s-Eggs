@@ -12,6 +12,8 @@ TagManager:
   - Pan
   - Trap
   - ZombieDestination
+  - Play
+  - Quit
   layers:
   - Default
   - TransparentFX
