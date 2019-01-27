@@ -7,17 +7,55 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] GameObject virtualCam;
+    [SerializeField] GameObject initialMessage;
 
-	// Use this for initialization
-	void Awake () 
+    private Player player;
+    private bool start;
+    private bool startFlag;
+    private bool endFlag;
+
+    // Use this for initialization
+    void Awake () 
 	{
+        player = FindObjectOfType<Player>();
 		virtualCam.SetActive(true);
 	}
 
     private void Update()
     {
-        PauseOnInput();
-        GoBackToMenu();
+        if (!start || (player.Died && !endFlag))
+        {
+            if (!startFlag)
+            {
+                initialMessage.SetActive(true);
+                startFlag = true;
+                Time.timeScale = 0;
+                IsGamePaused = true;
+            }
+            WaitForInput();
+        }
+        else
+        {
+            if (startFlag)
+            {
+                Time.timeScale = 1;
+                IsGamePaused = false;
+                startFlag = false;
+            }
+            if (endFlag) SceneManager.LoadScene("MainScene");
+            PauseOnInput();
+            GoBackToMenu();
+        }
+    }
+
+    private void WaitForInput()
+    {
+        if(Input.anyKey)
+        {
+            start = true;
+            if(player.Died) endFlag = true;
+            initialMessage.SetActive(false);
+        }
     }
 
     private void GoBackToMenu()

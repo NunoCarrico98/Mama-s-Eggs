@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dcf6959e70fd3fc45a587692c73eaa49
+guid: a7695b28099553f43a53143a3c1569a7
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -50,7 +50,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -80,39 +80,35 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape:
-    - - {x: 106.5, y: 66.5}
-      - {x: 65.5, y: 97.5}
-      - {x: 33.5, y: 139.5}
-      - {x: 8.5, y: 167.5}
-      - {x: -22.5, y: 166.5}
-      - {x: -50.5, y: 153.5}
-      - {x: -82.5, y: 125.5}
-      - {x: -129.5, y: 103.5}
-      - {x: -147.5, y: 81.5}
-      - {x: -137.5, y: 45.5}
-      - {x: -131.5, y: 14.5}
-      - {x: -153.5, y: -7.5}
-      - {x: -172.5, y: -27.5}
-      - {x: -164.5, y: -51.5}
-      - {x: -135.5, y: -65.5}
-      - {x: -94.5, y: -86.5}
-      - {x: -65.5, y: -115.5}
-      - {x: -39.5, y: -151.5}
-      - {x: 5.5, y: -170.5}
-      - {x: 49.5, y: -164.5}
-      - {x: 77.5, y: -138.5}
-      - {x: 99.5, y: -103.5}
-      - {x: 133.5, y: -63.5}
-      - {x: 156.5, y: -27.5}
-      - {x: 165.5, y: 3.5}
-      - {x: 154.5, y: 40.5}
+    physicsShape: []
     bones: []
-    spriteID: c4d07ee89ad2fd7429449d69ba69ba7a
+    spriteID: ec33d4e4fc47f4742b9ae714257ecda0
     vertices: []
     indices: 
     edges: []

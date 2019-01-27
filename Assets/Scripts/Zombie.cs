@@ -5,8 +5,11 @@ using UnityEngine;
 public class Zombie : MonoBehaviour, IEnemy
 {
 	public GameObject GameObject => gameObject;
+    public bool IsFacingRight = true;
+
 	public bool Died { get; private set; }
-	[SerializeField] private float health;
+    [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private float health;
 	[SerializeField] private float damage;
 	[SerializeField] private float movementSpeed;
 	[SerializeField] private float slowSpeed;
@@ -88,7 +91,9 @@ public class Zombie : MonoBehaviour, IEnemy
 			Vector3 theScale = transform.localScale;
 			theScale.x *= -1;
 			transform.localScale = theScale;
-		}
+            IsFacingRight = false;
+
+        }
 	}
 
 	public IEnumerator Die()

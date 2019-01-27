@@ -93,6 +93,7 @@ public class EnemySpawner : MonoBehaviour
 		//Quaternion rot = Quaternion.LookRotation(Vector3.forward, center - pos);
 		IEnemy newEnemy = Instantiate(
 			zombiePrefab, pos, transform.rotation, transform).GetComponent<IEnemy>();
+
 		if (newEnemy is Zombie)
 		{
 			while (newEnemy.IsOutOfEggWhite())
@@ -114,6 +115,9 @@ public class EnemySpawner : MonoBehaviour
 				newEnemy.GameObject.transform.position = GetSpawnPos();
 			}
 		}
+
+        if(newEnemy is TrapBubble)
+            newEnemy.GameObject.GetComponent<AudioSource>().PlayDelayed(0.5f);
 	}
 
 	private IEnumerator WaitToSpawn()
@@ -124,7 +128,11 @@ public class EnemySpawner : MonoBehaviour
 
 			yield return new WaitForSeconds(interval);
 
-			if(!gm.IsGamePaused) Spawn();
+            if (!gm.IsGamePaused)
+            {
+                Spawn();
+
+            }
 		}
 	}
 }

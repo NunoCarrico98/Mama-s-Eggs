@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -16,11 +16,13 @@ public class Player : MonoBehaviour
     public bool IsDying { get; private set; }
     public bool IsReseting { get; private set; }
     public bool Rolling { get; private set; }
+    public bool Died { get; private set; }
 
     private float rollTimer;
     private bool ableToMove = true;
     private bool facingRight = true;
     private bool canRoll = true;
+
     private Vector2 dir = Vector2.zero;
     private Rigidbody2D rb;
     private Animator animator;
@@ -119,14 +121,14 @@ public class Player : MonoBehaviour
         if (transform.childCount > 1) transform.GetChild(1).parent = null;
         transform.GetChild(0).parent = null;
         particleSystem.Stop();
-        gameObject.SetActive(false);
+        Died = true;
     }
 
     private void SetPlayerSpriteDirection(float horizontal)
     {
         // If the input is moving the player right and the player is facing left...
         if (facingRight && horizontal < 0) Flip();
-        if (!facingRight && horizontal >= 0) Flip();
+        if (!facingRight && horizontal > 0) Flip();
     }
 
     private void Flip()
@@ -154,10 +156,17 @@ public class Player : MonoBehaviour
             StartCoroutine(col.gameObject.GetComponent<Zombie>().Die());
             scoreManager.IncreaseScore();
             DestoyAfterDelay points = 
-                Instantiate(pointsPrefab, col.transform.position, 
-                Quaternion.Inverse(col.transform.rotation), 
+                Instantiate(pointsPrefab, col.transform.position,
+                col.transform.rotation, 
                 col.transform)
                 .GetComponent<DestoyAfterDelay>();
+            if (!col.GetComponent<Zombie>().IsFacingRight)
+            {
+                Vector3 theScale = col.transform.localScale;
+                theScale.x *= -1;
+                col.transform.localScale = theScale;
+            }
+                
             points.TimeToDie = 2;
 
         }
