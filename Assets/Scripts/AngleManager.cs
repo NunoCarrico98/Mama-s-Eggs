@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AngleManager : MonoBehaviour 
 {
+	public Vector3 PositionOnScreen { get; private set; }
+	public Vector3 MouseOnScreen { get; private set; }
 	private Camera cam;
 
 	private void Awake()
@@ -14,13 +16,13 @@ public class AngleManager : MonoBehaviour
 	public float GetAngle()
 	{
 		//Get the Screen positions of the object
-		Vector3 positionOnScreen = cam.WorldToViewportPoint(transform.position);
+		PositionOnScreen = cam.WorldToViewportPoint(transform.position);
 
 		//Get the Screen position of the mouse
-		Vector3 mouseOnScreen = cam.ScreenToViewportPoint(Input.mousePosition);
+		MouseOnScreen = cam.ScreenToViewportPoint(Input.mousePosition);
 
 		//Get the angle between the points
-		return AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+		return AngleBetweenTwoPoints(PositionOnScreen, MouseOnScreen);
 	}
 
 	private float AngleBetweenTwoPoints(Vector3 a, Vector3 b)

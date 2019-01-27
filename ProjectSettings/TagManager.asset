@@ -10,6 +10,7 @@ TagManager:
   - YolkIn
   - Yolk
   - Pan
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -20,9 +21,9 @@ TagManager:
   - 
   - 
   - VirtualScreen
-  - 
-  - 
-  - 
+  - Bg
+  - Limbo
+  - Fg
   - 
   - 
   - 

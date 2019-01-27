@@ -6,90 +6,114 @@ public class Player : MonoBehaviour
 {
 	[SerializeField] private float movementSpeed;
 	[SerializeField] private float maxTimeOutsideYolk;
-	[SerializeField] private float dashSpeed;
+	[SerializeField] private float rollSpeed;
 
 	private float deathTimer;
+	private float rollTimer;
+	private bool ableToMove = true;
 	private bool isDying;
-	private bool facingRight;
+	private bool isReseting = true;
+	private bool facingRight = true;
+	private bool rolling;
 	private Vector2 dir = Vector2.zero;
 	private Rigidbody2D rb;
-	private BoxCollider2D pCol;
 	private AngleManager angleManager;
+	private Animator animator;
 
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
-		pCol = GetComponent<BoxCollider2D>();
 		angleManager = FindObjectOfType<AngleManager>();
+		animator = GetComponent<Animator>();
 	}
 
 	private void Update()
 	{
-		MovePlayer();
-		SetPlayerSpriteDirection(angleManager.GetAngle());
+		CheckRollInput();
 		DeathCountdown();
+		ResetDeathTimer();
 	}
+
+	private void FixedUpdate()
+	{
+		if (ableToMove) MovePlayer();
+		if (rolling) Roll();
+	}
+
 
 	private void MovePlayer()
 	{
 		float horizontal = Input.GetAxisRaw("Horizontal") * movementSpeed;
 		float vertical = Input.GetAxisRaw("Vertical") * movementSpeed;
 
+		if (horizontal != 0 || vertical != 0) animator.SetBool("Walking", true);
+		else animator.SetBool("Walking", false);
+
 		dir = new Vector2(horizontal, vertical);
 		rb.MovePosition(rb.position + dir * Time.deltaTime);
+
+		SetPlayerSpriteDirection(horizontal);
+	}
+
+	private void CheckRollInput()
+	{
+		if (Input.GetButtonDown("Action") && !rolling && dir != Vector2.zero)
+		{
+			animator.SetTrigger("Roll");
+			rolling = true;
+		}
+
+	}
+
+	private void Roll()
+	{
+		rollTimer += Time.deltaTime;
+
+		if (rollTimer < 0.2)
+		{
+			rb.MovePosition(rb.position + dir * rollSpeed * Time.deltaTime);
+		}
+		else
+		{
+			rollTimer = 0;
+			rolling = false;
+		}
 	}
 
 	private void DeathCountdown()
 	{
-		if (isDying)
+		if (isDying && deathTimer < maxTimeOutsideYolk)
 		{
+			isReseting = false;
 			deathTimer += Time.deltaTime;
 			if (deathTimer >= maxTimeOutsideYolk)
-				gameObject.SetActive(false);
+				StartCoroutine(Die());
 		}
 	}
 
 	private void ResetDeathTimer()
 	{
-		isDying = false;
-		deathTimer = 0;
-	}
-
-	private void OnCollisionEnter2D(Collision2D col)
-	{
-		if (col.transform.tag == "YolkOut")
+		if (isReseting && deathTimer != 0)
 		{
-			ResetDeathTimer();
-			pCol.isTrigger = true;
+			isDying = false;
+			if (deathTimer > 0) deathTimer -= Time.deltaTime * 2;
+			else if (deathTimer < 0) deathTimer = 0;
 		}
 	}
 
-	private void OnCollisionExit2D(Collision2D col)
+	private IEnumerator Die()
 	{
-		if (col.transform.tag == "YolkIn")
-			isDying = true;
+		animator.SetTrigger("Die");
+		ableToMove = false;
+		yield return new WaitForSeconds(0.4f);
+		gameObject.SetActive(false);
 	}
 
-	private void OnTriggerEnter2D(Collider2D col)
-	{
-		if (col.tag == "YolkIn")
-			ResetDeathTimer();
-		if (col.transform.tag == "Enemy")
-			Destroy(col.gameObject);
-	}
-
-	private void OnTriggerExit2D(Collider2D col)
-	{
-		if (col.tag == "YolkOut")
-			pCol.isTrigger = false;
-	}
-
-	private void SetPlayerSpriteDirection(float angle)
+	private void SetPlayerSpriteDirection(float horizontal)
 	{
 		// If the input is moving the player right and the player is facing left...
-		if (facingRight && (angle > -90 && angle < 90)) Flip();
-
-		if (!facingRight && (angle < -90 || angle > 90)) Flip();
+		if (facingRight && horizontal < 0) Flip();
+		if (!facingRight && horizontal >= 0) Flip();
 	}
 
 	private void Flip()
@@ -101,5 +125,31 @@ public class Player : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	private void OnTriggerEnter2D(Collider2D col)
+	{
+		if (col.tag == "YolkIn")
+		{
+			isReseting = true;
+			ResetDeathTimer();
+		}
+		if (col.tag == "Enemy" && rolling)
+			StartCoroutine(col.gameObject.GetComponent<Zombie>().Die());
+		if (col.tag == "Trap")
+		{
+			if (col.GetComponent<TrapBubble>().IsExploding) StartCoroutine(Die());
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D col)
+	{
+		if (col.tag == "EggWhite")
+			StartCoroutine(Die());
+
+		if (col.transform.tag == "YolkIn")
+		{
+			isDying = true;
+		}
 	}
 }

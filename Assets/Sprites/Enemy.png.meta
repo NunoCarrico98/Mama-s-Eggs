@@ -1,31 +1,27 @@
 fileFormatVersion: 2
-guid: 1e0ba01ee2824c34ab9a6dd908b12f7a
+guid: c8e98cba6b77a47459dce8e612a0da85
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Kloy_0
-    21300002: Kloy_1
-    21300004: Kloy_2
-    21300006: Kloy_3
-    21300008: Kloy_4
-    21300010: Kloy_5
-    21300012: Kloy_6
-    21300014: Kloy_7
-    21300016: Kloy_8
-    21300018: Kloy_9
-    21300020: Kloy_10
-    21300022: Kloy_11
-    21300024: Kloy_12
-    21300026: Kloy_13
-    21300028: Kloy_14
-    21300030: Kloy_15
-    21300032: Kloy_16
-    21300034: Kloy_17
-    21300036: Kloy_18
-    21300038: Kloy_19
-    21300040: Kloy_20
-    21300042: Kloy_21
-    21300044: Kloy_22
-    21300046: Kloy_23
+    21300000: Enemy_0
+    21300002: Enemy_1
+    21300004: Enemy_2
+    21300006: Enemy_3
+    21300008: Enemy_4
+    21300010: Enemy_5
+    21300012: Enemy_6
+    21300014: Enemy_7
+    21300016: Enemy_8
+    21300018: Enemy_9
+    21300020: Enemy_10
+    21300022: Enemy_11
+    21300024: Enemy_12
+    21300026: Enemy_13
+    21300028: Enemy_14
+    21300030: Enemy_15
+    21300032: Enemy_16
+    21300034: Enemy_17
+    21300036: Enemy_18
+    21300038: Enemy_19
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -108,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kloy_0
+      name: Enemy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -122,13 +118,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6fe8821eee14ad4face1a074b859ffa
+      spriteID: dc5d8e1364cc929489dde63955ae353d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_1
+      name: Enemy_1
       rect:
         serializedVersion: 2
         x: 25
@@ -142,13 +138,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26a7159927bb5724fb920618cb17ccd5
+      spriteID: 94efe2f50dcc3994a9edc58b9583d907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_2
+      name: Enemy_2
       rect:
         serializedVersion: 2
         x: 50
@@ -162,13 +158,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 463c0323cdc5af94d8bb790476ec727c
+      spriteID: 72cdb99763f5e7f4591a8585c40e955a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_3
+      name: Enemy_3
       rect:
         serializedVersion: 2
         x: 75
@@ -182,13 +178,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5a8e088689cd8f4f878355f29a9ebd0
+      spriteID: 2b3dbd26c520bec458cc9355b99c8e01
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_4
+      name: Enemy_4
       rect:
         serializedVersion: 2
         x: 0
@@ -202,13 +198,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 500ec69f70dcec24a8fdcc37d294e6e5
+      spriteID: 5dcca7950b2f36443ae25c20d7b26b22
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_5
+      name: Enemy_5
       rect:
         serializedVersion: 2
         x: 25
@@ -222,13 +218,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79736f48dac4eaa4f9402fd383fffd52
+      spriteID: 7e01c9ec015aaba4c9fcc2c8af4e5104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_6
+      name: Enemy_6
       rect:
         serializedVersion: 2
         x: 50
@@ -242,13 +238,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94c7d496bdd894b4d997aec514bb9da6
+      spriteID: 851a785ab0906694b9600e1787baf016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_7
+      name: Enemy_7
       rect:
         serializedVersion: 2
         x: 75
@@ -262,13 +258,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd47b885649054f4dbc62503c23ff341
+      spriteID: 59eae04419701734eba07561fb67228d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_8
+      name: Enemy_8
       rect:
         serializedVersion: 2
         x: 0
@@ -282,13 +278,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e275dd96181d5c498224f54f2fe4c7d
+      spriteID: a7e6435a09dd34244aa1ca4df06020d8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_9
+      name: Enemy_9
       rect:
         serializedVersion: 2
         x: 25
@@ -302,13 +298,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff23ffdea754efc458abefac35a6a8e7
+      spriteID: 8bcb822722f54dd48b84224ed6fa9bef
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_10
+      name: Enemy_10
       rect:
         serializedVersion: 2
         x: 50
@@ -322,13 +318,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 311a6573cfbce5740af20cf81692b06a
+      spriteID: eac45cc28a31d4f4e871af8a3b658d25
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_11
+      name: Enemy_11
       rect:
         serializedVersion: 2
         x: 75
@@ -342,13 +338,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3949b54dea210504da0ae2dd650f71fe
+      spriteID: d4b6d1574b65dbf489e9d76b2dbdd583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_12
+      name: Enemy_12
       rect:
         serializedVersion: 2
         x: 0
@@ -362,13 +358,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c69e6c1a02a07b843869712de81178e5
+      spriteID: d5788e0b09c52894aa0875cac4ab272b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_13
+      name: Enemy_13
       rect:
         serializedVersion: 2
         x: 25
@@ -382,13 +378,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 853ca1b18927e594397123857758dbaf
+      spriteID: 598564d2355482646a8b67c51afca386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_14
+      name: Enemy_14
       rect:
         serializedVersion: 2
         x: 50
@@ -402,13 +398,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9113313757c786844b9acc4579b23679
+      spriteID: f43c730cbb9935e47878a9fe472213a3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_15
+      name: Enemy_15
       rect:
         serializedVersion: 2
         x: 75
@@ -422,13 +418,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fb9d970a26bcb64e9175561348910d5
+      spriteID: 57040713c5916ef41994b819edd5eced
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_16
+      name: Enemy_16
       rect:
         serializedVersion: 2
         x: 0
@@ -442,13 +438,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9763d9c10628aa94e9d09026aa4b7de8
+      spriteID: 24553122a0b8874498f2288670368352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_17
+      name: Enemy_17
       rect:
         serializedVersion: 2
         x: 25
@@ -462,13 +458,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 072a9aec6e5dc2f46899602837acb372
+      spriteID: c4795142b8bca414c8998432c2a88694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_18
+      name: Enemy_18
       rect:
         serializedVersion: 2
         x: 50
@@ -482,77 +478,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e7a959600320b54281035cf04760d58
+      spriteID: 82b514217e9ed3f499be11eaddfe3b7e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kloy_19
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 50
-        width: 25
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6cc7ed7713bf59442ba18e680017e9c8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kloy_20
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 50
-        width: 25
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45181925ecfa00847adcc5c981655371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kloy_21
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 50
-        width: 25
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c38afe0bf10306f488d762551bce6a12
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kloy_22
+      name: Enemy_19
       rect:
         serializedVersion: 2
         x: 75
-        y: 50
+        y: 75
         width: 25
         height: 25
       alignment: 0
@@ -562,27 +498,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb507c8f3c349494a8d126d9a433e1ca
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Kloy_23
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 25
-        width: 25
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c00b527f0afeb24a871d59cc55bec13
+      spriteID: 6ab0d392a4576654b8f359a636389561
       vertices: []
       indices: 
       edges: []
@@ -590,7 +506,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b0c6ff2d0839b0140886a7ccab6d3e58
+    spriteID: 7771fa89f04514746818f15e82ec95e0
     vertices: []
     indices: 
     edges: []

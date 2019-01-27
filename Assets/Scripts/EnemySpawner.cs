@@ -4,54 +4,64 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private int maxNumberOfEnemies;
-    [SerializeField] private GameObject zombiePrefab;
-    [SerializeField] private float minRadius;
-    [SerializeField] private float maxRadius;
-    [SerializeField] private float minInterval;
-    [SerializeField] private float maxInterval;
+	[SerializeField] private int maxNumberOfEnemies;
+	[SerializeField] private GameObject zombiePrefab;
+	[SerializeField] private float minRadius;
+	[SerializeField] private float maxRadius;
+	[SerializeField] private float minInterval;
+	[SerializeField] private float maxInterval;
 
-    private Vector2 centerPos;
+	private Vector2 centerPos;
 
-    private void Start()
-    {
-        StartCoroutine(WaitToSpawn());
-    }
+	private void Start()
+	{
+		StartCoroutine(WaitToSpawn());
+	}
 
-    public Vector2 GetSpawnPos()
-    {
-        float ang = Random.value * 360;
-        float radius = Random.Range(minRadius, maxRadius);
-        Vector2 pos;
-        pos.x = (centerPos.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad));
-        pos.y = (centerPos.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad));
-        return pos;
-    }
+	public Vector2 GetSpawnPos()
+	{
+		float ang = Random.value * 360;
+		float radius = Random.Range(minRadius, maxRadius);
+		Vector2 pos;
+		pos.x = (centerPos.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad));
+		pos.y = (centerPos.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad));
+		return pos;
+	}
 
-    private void Spawn()
-    {
-        centerPos = transform.position;
+	private void Spawn()
+	{
+		centerPos = transform.position;
 
-        Vector2 pos = GetSpawnPos();
-        //Quaternion rot = Quaternion.LookRotation(Vector3.forward, center - pos);
-        GameObject newEnemy = Instantiate(zombiePrefab, pos, transform.rotation, transform);
+		Vector2 pos = GetSpawnPos();
 
-		while (newEnemy.GetComponent<Enemy>().IsOutOfEggWhite())
+		//Quaternion rot = Quaternion.LookRotation(Vector3.forward, center - pos);
+		IEnemy newEnemy = Instantiate(
+			zombiePrefab, pos, transform.rotation, transform).GetComponent<IEnemy>();
+		if (newEnemy is Zombie)
 		{
-			Debug.Log("Spawnou fora");
-			newEnemy.transform.position = GetSpawnPos();
+			while (newEnemy.IsOutOfEggWhite())
+			{
+				newEnemy.GameObject.transform.position = GetSpawnPos();
+			}
+		}
+		if (newEnemy is TrapBubble)
+		{
+			while (newEnemy.IsOutOfEggWhite())
+			{
+				newEnemy.GameObject.transform.position = GetSpawnPos();
+			}
 		}
 	}
 
-    private IEnumerator WaitToSpawn()
-    {
-        while (true)
-        {
-            float interval = Random.Range(minInterval, maxInterval);
+	private IEnumerator WaitToSpawn()
+	{
+		while (true)
+		{
+			float interval = Random.Range(minInterval, maxInterval);
 
-            yield return new WaitForSeconds(interval);
+			yield return new WaitForSeconds(interval);
 
-            Spawn();
-        }
-    }
+			Spawn();
+		}
+	}
 }
