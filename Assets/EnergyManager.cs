@@ -24,7 +24,6 @@ public class EnergyManager : MonoBehaviour
 	{
 		SetEnergyLevelState();
 		UpdateEnergyLevelsUI();
-		ManagePlayerRolls();
 		KillPlayer();
 	}
 
@@ -106,24 +105,6 @@ public class EnergyManager : MonoBehaviour
 			EnableGO(yolkIcons[1], yolkIcons[0]);
 		else if(EnergyLevel == EnergyLevels.zero)
 			EnableGO(yolkIcons[0]);
-	}
-
-	private void ManagePlayerRolls()
-	{
-		if (EnergyLevel == EnergyLevels.seven && player.Rolling)
-			EnergyLevel = EnergyLevels.six;
-		else if(EnergyLevel == EnergyLevels.six && player.Rolling)
-			EnergyLevel = EnergyLevels.five;
-		else if(EnergyLevel == EnergyLevels.five && player.Rolling)
-			EnergyLevel = EnergyLevels.four;
-		else if(EnergyLevel == EnergyLevels.four && player.Rolling)
-			EnergyLevel = EnergyLevels.three;
-		else if(EnergyLevel == EnergyLevels.three && player.Rolling)
-			EnergyLevel = EnergyLevels.two;
-		else if(EnergyLevel == EnergyLevels.two && player.Rolling)
-			EnergyLevel = EnergyLevels.one;
-		else if(EnergyLevel == EnergyLevels.one && player.Rolling)
-			EnergyLevel = EnergyLevels.zero;
 	}
 
 	private void DisableGO(params GameObject[] array)

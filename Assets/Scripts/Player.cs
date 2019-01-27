@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Action") && !Rolling && dir != Vector2.zero)
 		{
+			DeathTimer += 0.14f * maxTimeOutsideYolk;
 			animator.SetTrigger("Roll");
 			Rolling = true;
 		}
