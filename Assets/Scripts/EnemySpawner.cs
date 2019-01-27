@@ -51,6 +51,13 @@ public class EnemySpawner : MonoBehaviour
 				newEnemy.GameObject.transform.position = GetSpawnPos();
 			}
 		}
+		if (newEnemy is Bubble)
+		{
+			while (newEnemy.IsOutOfEggWhite())
+			{
+				newEnemy.GameObject.transform.position = GetSpawnPos();
+			}
+		}
 	}
 
 	private IEnumerator WaitToSpawn()

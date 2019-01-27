@@ -11,6 +11,7 @@ TagManager:
   - Yolk
   - Pan
   - Trap
+  - ZombieDestination
   layers:
   - Default
   - TransparentFX

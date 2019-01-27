@@ -5,26 +5,33 @@ using UnityEngine;
 public class Zombie : MonoBehaviour, IEnemy
 {
 	public GameObject GameObject => gameObject;
-	[SerializeField] private Transform target;
+	public bool Died { get; private set; }
 	[SerializeField] private float health;
 	[SerializeField] private float damage;
 	[SerializeField] private float movementSpeed;
 	[SerializeField] private float slowSpeed;
 	[SerializeField] private LayerMask layerMask;
 
+	private YolkController yolkController;
+	private Animator anim;
+	private Transform target;
 	private float spawnTimer;
 	private bool ableToMove;
 	private Vector2 dir;
-	private Animator anim;
+
 
 	private void Awake()
 	{
 		anim = GetComponent<Animator>();
+
+		yolkController = FindObjectOfType<YolkController>();
+
+		if (target == null) target = GameObject
+		.FindGameObjectWithTag("ZombieDestination").transform;
 	}
 
 	private void Start()
 	{
-		if (target == null) target = GameObject.FindGameObjectWithTag("Yolk").transform;
 		FlipEnemy();
 	}
 
@@ -73,7 +80,7 @@ public class Zombie : MonoBehaviour, IEnemy
 		}
 	}
 
-	private void FlipEnemy()
+	public void FlipEnemy()
 	{
 		if (transform.position.x > target.position.x)
 		{
@@ -86,15 +93,19 @@ public class Zombie : MonoBehaviour, IEnemy
 
 	public IEnumerator Die()
 	{
-		anim.SetTrigger("Kill");
-		ableToMove = false;
-		yield return new WaitForSeconds(0.8f);
-		Destroy(gameObject);
+		if (!Died)
+		{
+			Died = true;
+			anim.SetTrigger("Kill");
+			ableToMove = false;
+			yield return new WaitForSeconds(0.8f);
+			Destroy(gameObject);
+		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D col)
+	private void OnTriggerStay2D(Collider2D col)
 	{
 		if (col.tag == "YolkIn")
-			movementSpeed = YolkController.Speed;
+		movementSpeed = yolkController.Speed / 20 * (1/ yolkController.Speed);
 	}
 }

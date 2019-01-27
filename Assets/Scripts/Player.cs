@@ -8,28 +8,29 @@ public class Player : MonoBehaviour
 	[SerializeField] private float maxTimeOutsideYolk;
 	[SerializeField] private float rollSpeed;
 
-	private float deathTimer;
+	public float MaxTimeOutsideYolk => maxTimeOutsideYolk;
+	public float DeathTimer { get; private set; }
+	public bool IsDying { get; private set; }
+	public bool IsReseting { get; private set; }
+	public bool Rolling { get; private set; }
+
 	private float rollTimer;
 	private bool ableToMove = true;
-	private bool isDying;
-	private bool isReseting = true;
 	private bool facingRight = true;
-	private bool rolling;
+	private bool canRoll = true;
 	private Vector2 dir = Vector2.zero;
 	private Rigidbody2D rb;
-	private AngleManager angleManager;
 	private Animator animator;
 
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
-		angleManager = FindObjectOfType<AngleManager>();
 		animator = GetComponent<Animator>();
 	}
 
 	private void Update()
 	{
-		CheckRollInput();
+		if(canRoll) CheckRollInput();
 		DeathCountdown();
 		ResetDeathTimer();
 	}
@@ -37,9 +38,8 @@ public class Player : MonoBehaviour
 	private void FixedUpdate()
 	{
 		if (ableToMove) MovePlayer();
-		if (rolling) Roll();
+		if (Rolling) Roll();
 	}
-
 
 	private void MovePlayer()
 	{
@@ -57,12 +57,11 @@ public class Player : MonoBehaviour
 
 	private void CheckRollInput()
 	{
-		if (Input.GetButtonDown("Action") && !rolling && dir != Vector2.zero)
+		if (Input.GetButtonDown("Action") && !Rolling && dir != Vector2.zero)
 		{
 			animator.SetTrigger("Roll");
-			rolling = true;
+			Rolling = true;
 		}
-
 	}
 
 	private void Roll()
@@ -70,38 +69,38 @@ public class Player : MonoBehaviour
 		rollTimer += Time.deltaTime;
 
 		if (rollTimer < 0.2)
-		{
 			rb.MovePosition(rb.position + dir * rollSpeed * Time.deltaTime);
-		}
 		else
 		{
 			rollTimer = 0;
-			rolling = false;
+			Rolling = false;
 		}
 	}
 
+	public void CanPlayerRoll(bool enable) => canRoll = enable;
+
 	private void DeathCountdown()
 	{
-		if (isDying && deathTimer < maxTimeOutsideYolk)
+		if (IsDying && DeathTimer < maxTimeOutsideYolk)
 		{
-			isReseting = false;
-			deathTimer += Time.deltaTime;
-			if (deathTimer >= maxTimeOutsideYolk)
-				StartCoroutine(Die());
+			IsReseting = false;
+			DeathTimer += Time.deltaTime;
+			//if (DeathTimer >= maxTimeOutsideYolk)
+			//	StartCoroutine(Die());
 		}
 	}
 
 	private void ResetDeathTimer()
 	{
-		if (isReseting && deathTimer != 0)
+		if (IsReseting && DeathTimer != 0)
 		{
-			isDying = false;
-			if (deathTimer > 0) deathTimer -= Time.deltaTime * 2;
-			else if (deathTimer < 0) deathTimer = 0;
+			IsDying = false;
+			if (DeathTimer > 0) DeathTimer -= Time.deltaTime * 2;
+			else if (DeathTimer < 0) DeathTimer = 0;
 		}
 	}
 
-	private IEnumerator Die()
+	public IEnumerator Die()
 	{
 		animator.SetTrigger("Die");
 		ableToMove = false;
@@ -131,15 +130,15 @@ public class Player : MonoBehaviour
 	{
 		if (col.tag == "YolkIn")
 		{
-			isReseting = true;
+			IsReseting = true;
 			ResetDeathTimer();
 		}
-		if (col.tag == "Enemy" && rolling)
+
+		if (col.tag == "Enemy" && Rolling)
 			StartCoroutine(col.gameObject.GetComponent<Zombie>().Die());
+
 		if (col.tag == "Trap")
-		{
 			if (col.GetComponent<TrapBubble>().IsExploding) StartCoroutine(Die());
-		}
 	}
 
 	private void OnTriggerExit2D(Collider2D col)
@@ -148,8 +147,6 @@ public class Player : MonoBehaviour
 			StartCoroutine(Die());
 
 		if (col.transform.tag == "YolkIn")
-		{
-			isDying = true;
-		}
+			IsDying = true;
 	}
 }

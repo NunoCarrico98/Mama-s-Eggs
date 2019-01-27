@@ -2,27 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapBubble : MonoBehaviour, IEnemy
+public class Bubble : MonoBehaviour, IEnemy
 {
 	public GameObject GameObject => gameObject;
-	public bool IsExploding { get; private set; }
-
 	[SerializeField] private LayerMask layerMask;
 
 	private void Start()
 	{
-		StartCoroutine(TrapBubbleLifeExpectancy());
+		StartCoroutine(BubbleLifeExpectancy());
 	}
 
-	private IEnumerator TrapBubbleLifeExpectancy()
+	private IEnumerator BubbleLifeExpectancy()
 	{
-		yield return new WaitForSeconds(0.5f);
-		IsExploding = true;
-		GetComponent<Collider2D>().enabled = true;
-		yield return new WaitForSeconds(0.2f);
-		IsExploding = false;
-		GetComponent<Collider2D>().enabled = false;
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(1f);
 		Destroy(gameObject);
 	}
 

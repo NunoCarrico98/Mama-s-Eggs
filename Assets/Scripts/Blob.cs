@@ -31,7 +31,7 @@ public class Blob : MonoBehaviour {
         MapVerticesToReferencePoints();
     }
 
-    void CreateReferencePoints() {
+	void CreateReferencePoints() {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         referencePoints = new GameObject[referencePointsCount];
         Vector3 offsetFromCenter = ((0.5f - referencePointRadius) * Vector3.up);
